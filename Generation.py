@@ -20,7 +20,7 @@ class Generation:
         else:
             self.population = population
 
-    def selection(self,fitness):
+    def selection(self,fitness_function):
         '''
       arguments:
         self.population (array)
@@ -31,7 +31,7 @@ class Generation:
         '''
         fitnesses = np.array([])
         for chrom in self.population:
-            np.append(fitnesses,chrom.fitness(fitness))
+            np.append(fitnesses,chrom.fitness_calculate(fitness_function))
         sortindices = np.argsort(fitnesses)
         self.selection = self.population[sortindices[:self.selectionsize]]
 
