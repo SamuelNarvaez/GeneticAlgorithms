@@ -15,7 +15,7 @@ class Generation:
 
         if population is None:
             self.population = np.array([])
-            for i in range n:
+            for i in range(n):
                 np.append(self.population, Chromosome(self.length,self.range))
         else:
             self.population = population
@@ -33,7 +33,7 @@ class Generation:
         for chrom in self.population:
             np.append(fitnesses,chrom.fitness(fitness))
         sortindices = np.argsort(fitnesses)
-        self.selection = self.population[sortindices[:self.selectionsize]
+        self.selection = self.population[sortindices[:self.selectionsize]]
 
     def crossover(self, mask, newGenes):
       ''' arguments:
