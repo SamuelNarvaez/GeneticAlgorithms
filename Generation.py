@@ -49,7 +49,7 @@ class Generation:
         size = self.selected.size
         newGenes = math.floor(size/(1-newGenes)) - size #convert percent to number of new samples
         for i in range(newGenes):
-            self.selected = np.append(self.selected,Chromosome(self.length,self.note_range)) #generate new random examples for genetic diversity
+            self.selected.population = np.append(self.selected.population,Chromosome(self.length,self.note_range)) #generate new random examples for genetic diversity
         nextGeneration = np.array([])
         for pair in itertools.combinations(self.selected.population,2):
             nextGeneration = np.append(nextGeneration,pair[0].crossover(pair[1],mask))
