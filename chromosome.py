@@ -31,24 +31,24 @@ class Chromosome:
             self.genotype = np.random.randint(0, high = note_range, size = n)
 
 
-            
 
-    def crossover(parent1, parent2, mask):
+
+    def crossover(self, parent2, mask):
         """
         arguments:
-            parent1 (chromosome)
+            self (parent1) (chromosome)
             parent2 (chromosome)
-            mask (string) - the binary crossover mask 
+            mask (string) - the binary crossover mask
 
         returns:
             offspring (list of chromosomes) - result of crossover
         """
 
         inv_mask = 1 - mask
-        offspring = mask*parent1 + inv_mask*parent2
+        offspring = mask*self.genotype + inv_mask*parent2.genotype
 
-        return offspring
-        
+        return Chromosome(self.length,self.note_range,self.generation,sequence=offspring)
+
     def mutate(chromosome, note_range = 8, prob = 0):
         """
         arguments:

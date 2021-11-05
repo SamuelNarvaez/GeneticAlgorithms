@@ -53,6 +53,6 @@ class Generation:
             selected = np.append(selected,Chromosome(self.length,self.note_range)) #generate new random examples for genetic diversity
         nextGeneration = np.array([])
         for pair in itertools.combinations(selected,2):
-            nextGeneration = np.append(nextGeneration,pair[0].crossover(pair[0],pair[1],mask))
+            nextGeneration = np.append(nextGeneration,pair[0].crossover(pair[1],mask))
 
         return Generation(self.generation+1,self.size,self.length,self.note_range,population=nextGeneration)
