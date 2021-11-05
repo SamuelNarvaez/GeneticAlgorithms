@@ -36,7 +36,7 @@ class Generation:
         result = self.population[sortindices[:self.selectionsize]]
         self.selected = Generation(0,result.shape[0],self.length,self.note_range,population=result)
 
-    def crossover(self, mask, newGenes):
+    def batchcrossover(self, mask, newGenes):
         ''' arguments:
         selected population (array) - result of selection on self.population
         mask (string) - what crossover mask to use
