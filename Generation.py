@@ -9,7 +9,7 @@ class Generation:
         self.generation=generation
         self.length=length
         self.note_range=note_range
-        self.selection = None
+        self.selected = None
         self.size = n
         self.selectionsize = int(1+np.sqrt(1+8*self.size)/2)
 
@@ -33,7 +33,7 @@ class Generation:
         for chrom in self.population:
             np.append(fitnesses,chrom.fitness_calculate(fitness_function))
         sortindices = np.argsort(fitnesses)
-        self.selection = self.population[sortindices[:self.selectionsize]]
+        self.selected = self.population[sortindices[:self.selectionsize]]
 
     def crossover(self, mask, newGenes):
         ''' arguments:
@@ -45,7 +45,7 @@ class Generation:
         add {newGenes}% random examples to {selected population},
         compute the crossover for every possible pairing of chromosomes in the population,
         return the results of the crossover '''
-        selected = self.selection
+        selected = self.selected
         size = selected.shape[0]
         newGenes = math.floor(size/(1-newGenes)) - size #convert percent to number of new samples
         for i in range(newGenes):
