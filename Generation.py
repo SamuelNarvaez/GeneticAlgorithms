@@ -33,7 +33,8 @@ class Generation:
         for chrom in self.population:
             fitnesses = np.append(fitnesses,chrom.fitness_calculate(fitness_function))
         sortindices = np.argsort(fitnesses)
-        self.selected = self.population[sortindices[:self.selectionsize]]
+        selected = self.population[sortindices[:self.selectionsize]]
+        self.selected = Generation(0,selected.shape[0],self.length,self.note_range,population=selected)
 
     def crossover(self, mask, newGenes):
         ''' arguments:
