@@ -5,10 +5,10 @@ from fitness import FitnessFunction
 import itertools
 
 class Generation:
-    def __init__(self,generation=0,n=200,length = 8, range = 8, population=None):
+    def __init__(self,generation=0,n=200,length = 8, note_range = 8, population=None):
         self.generation=generation
         self.length=length
-        self.range=range
+        self.note_range=note_range
         self.selection = None
         self.size = n
         self.selectionsize = int(1+np.sqrt(1+8*self.size)/2)
@@ -16,7 +16,7 @@ class Generation:
         if population is None:
             self.population = np.array([])
             for i in range(n):
-                np.append(self.population, Chromosome(self.length,self.range))
+                np.append(self.population, Chromosome(self.length,self.note_range))
         else:
             self.population = population
 
@@ -49,9 +49,9 @@ class Generation:
         size = selected.shape[0]
         newGenes = math.floor(size/(1-newGenes)) - size #convert percent to number of new samples
         for i in range(newGenes):
-            np.append(selected,Chromosome(self.length,self.range)) #generate new random examples for genetic diversity
+            np.append(selected,Chromosome(self.length,self.note_range)) #generate new random examples for genetic diversity
         nextGeneration = np.array([])
         for pair in itertools.combinations(selected,2):
             np.append(nextGeneration,pair[0].crossover(pair[1]))
 
-        return Generation(self.generation+1,self.size,self.length,self.range,population=nextGeneration)
+        return Generation(self.generation+1,self.size,self.length,self.note_range,population=nextGeneration)
