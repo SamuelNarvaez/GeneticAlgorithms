@@ -46,13 +46,12 @@ class Generation:
         add {newGenes}% random examples to {selected population},
         compute the crossover for every possible pairing of chromosomes in the population,
         return the results of the crossover '''
-        selected = self.selected
-        size = selected.size
+        size = self.selected.size
         newGenes = math.floor(size/(1-newGenes)) - size #convert percent to number of new samples
         for i in range(newGenes):
-            selected = np.append(selected,Chromosome(self.length,self.note_range)) #generate new random examples for genetic diversity
+            self.selected = np.append(self.selected,Chromosome(self.length,self.note_range)) #generate new random examples for genetic diversity
         nextGeneration = np.array([])
-        for pair in itertools.combinations(selected,2):
+        for pair in itertools.combinations(self.selected,2):
             nextGeneration = np.append(nextGeneration,pair[0].crossover(pair[1],mask))
 
         return Generation(self.generation+1,self.size,self.length,self.note_range,population=nextGeneration)
