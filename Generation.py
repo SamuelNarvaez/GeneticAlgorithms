@@ -36,17 +36,15 @@ class Generation:
         self.selection = self.population[sortindices[:self.selectionsize]]
 
     def crossover(self, mask, newGenes):
-      ''' arguments:
+        ''' arguments:
         selected population (array) - result of selection on self.population
         mask (string) - what crossover mask to use
         newGenes (float) - percent of population that should be randomly generated examples
       returns:
         result (array)
-
         add {newGenes}% random examples to {selected population},
         compute the crossover for every possible pairing of chromosomes in the population,
-        return the results of the crossover
-        '''
+        return the results of the crossover '''
         selected = self.selection
         size = selected.shape[0]
         newGenes = math.floor(size/(1-newGenes)) - size #convert percent to number of new samples
