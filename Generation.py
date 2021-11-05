@@ -16,7 +16,7 @@ class Generation:
         if population is None:
             self.population = np.array([])
             for i in range(n):
-                np.append(self.population, Chromosome(self.length,self.note_range))
+                self.population = np.append(self.population, Chromosome(self.length,self.note_range))
         else:
             self.population = population
 
@@ -31,7 +31,7 @@ class Generation:
         '''
         fitnesses = np.array([])
         for chrom in self.population:
-            np.append(fitnesses,chrom.fitness_calculate(fitness_function))
+            fitnesses = np.append(fitnesses,chrom.fitness_calculate(fitness_function))
         sortindices = np.argsort(fitnesses)
         self.selected = self.population[sortindices[:self.selectionsize]]
 
@@ -49,9 +49,9 @@ class Generation:
         size = selected.shape[0]
         newGenes = math.floor(size/(1-newGenes)) - size #convert percent to number of new samples
         for i in range(newGenes):
-            np.append(selected,Chromosome(self.length,self.note_range)) #generate new random examples for genetic diversity
+            selected = np.append(selected,Chromosome(self.length,self.note_range)) #generate new random examples for genetic diversity
         nextGeneration = np.array([])
         for pair in itertools.combinations(selected,2):
-            np.append(nextGeneration,pair[0].crossover(pair[1]))
+            nextGeneration = np.append(nextGeneration,pair[0].crossover(pair[1]))
 
         return Generation(self.generation+1,self.size,self.length,self.note_range,population=nextGeneration)
