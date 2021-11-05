@@ -4,15 +4,15 @@ class Chromosome:
     """
     attributes:
     length (int)
-    range (int)
+    note_range (int)
     genotype (array)
     generation (int)
     fitness (float)
     """
 
-    def __init__(self, n, range = 8, gen = 0,  sequence=[]):
+    def __init__(self, n, note_range = 8, gen = 0,  sequence=[]):
         self.length = n
-        self.range = range
+        self.note_range = note_range
         self.generation = gen
 
         """
@@ -28,7 +28,7 @@ class Chromosome:
         if len(sequence) == n:
             self.genotype = sequence
         else:
-            self.genotype = np.random.randint(0, high = range, size = n)
+            self.genotype = np.random.randint(0, high = note_range, size = n)
 
 
             
@@ -49,7 +49,7 @@ class Chromosome:
 
         return offspring
         
-    def mutate(chromosome, range = 8, prob = 0):
+    def mutate(chromosome, note_range = 8, prob = 0):
         """
         arguments:
             chromosome (chromosome)
@@ -64,7 +64,7 @@ class Chromosome:
         to_mutate = np.random.choice([0, 1], size = n, p = [1-prob, prob])
 
         # What are those values mutated to?
-        mutations = np.random.randint(0, high = range, size = n)*to_mutate
+        mutations = np.random.randint(0, high = note_range, size = n)*to_mutate
 
         # Add the mutations to the original chromosome
         mutated = (1-to_mutate)*chromosome + to_mutate*mutations
