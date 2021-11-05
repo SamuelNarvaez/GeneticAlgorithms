@@ -1,7 +1,7 @@
 import numpy as np
 import math
-import Chromosome
-import FitnessFunctions
+from chromosome import Chromosome
+from fitness import FitnessFunction
 import itertools
 
 class Generation:
