@@ -1,3 +1,6 @@
+Pseudocode: 
+
+
 class Generation:
   attributes:
     number (int) - which generation is it?
